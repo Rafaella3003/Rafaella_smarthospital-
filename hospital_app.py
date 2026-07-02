@@ -146,13 +146,13 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 #Section 2 - Duration and Complaint 
 
-  st.markdown("""
-<div style="background:#fdf4ff;border:1px solid #bae6fd; border-radius:14px; padding:16px;">
+st.markdown("""
+<div style="background:#fdf4ff; border:1px solid #bae6fd; border-radius:14px;
             padding:20px 24px; margin-bottom:20px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-        <span style ="background:#7c3aed;color:white;border-radius:8px;
-                    padding:4px 10px; font-size:12px;font-weight:600;">2</span>
-        <span style ="font-size:16px;font-weight:600;color:#0c4a6e;">How long have you had these symptoms?</span>
+    <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+        <span style="background:#7c3aed; color:white; border-radius:8px;
+                     padding:4px 10px; font-size:12px; font-weight:600;">2</span>
+        <span style="font-size:16px; font-weight:600; color:#0c4a6e;">How long have you had these symptoms?</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
