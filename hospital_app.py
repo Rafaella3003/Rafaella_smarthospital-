@@ -41,31 +41,31 @@ DEPT_INFO = {
         'next'  : ['Visit Level 2, Wing B', 'Estimated wait: 15-25 min', 'Please wear a mask']
     },
   'Cardiology': {
-        'icon'  : '🫁',
+        'icon'  : '❤️',
         'color' : '#dc2626', 'bg':'#fee2e2','border':'#fca5a5',
         'desc'  : 'Specialises in heart and cardiovascular conditions.',
         'next'  : ['Visit Level 3, Wing A', 'Estimated wait: 20-30 min', 'Bring any previous ECG reports']
     },
   'Gastroenterology': {
-        'icon'  : '🫁',
+        'icon'  : '🫃',
         'color' : '#d97706', 'bg':'#fef3c7','border':'#fcd34d',
         'desc'  : 'Specialises in digestive system and abdominal conditions.',
         'next'  : ['Visit Level 1, Wing C', 'Estimated wait: 10-20 min', 'Avoid eating before consultations']
     },
   'Neurology': {
-        'icon'  : '🫁',
+        'icon'  : '🧠',
         'color' : '#7c3aed', 'bg':'#e0f2fe','border':'#c4b5fd',
         'desc'  : 'Specialises in brain, spine, and nervous system conditions.',
         'next'  : ['Visit Level 4, Wing A', 'Estimated wait: 25-35 min', 'Bring list of current medications']
     },
    'General Medicine': {
-        'icon'  : '🫁',
+        'icon'  : '🩺',
         'color' : '#059669', 'bg':'#d1fae5','border':'#6ee7b7',
         'desc'  : 'Handles general health concerns and non-specialist conditions.',
         'next'  : ['Visit Level 1, Wing A', 'Estimated wait: 10-15 min', 'Registration Desk is open 24/7']
     },
    'Dermatology': {
-        'icon'  : '🫁',
+        'icon'  : '🔬',
         'color' : '#b45309', 'bg':'#fef9c3','border':'#fde68a',
         'desc'  : 'Specialises in skin, hair, and nail conditions.',
         'next'  : ['Visit Level 2, Wing D', 'Estimated wait: 15-20 min', 'Bring photos of affected area if possible']
@@ -79,4 +79,51 @@ st.markdown("""
             Smart Hospital Patient Navigator
 </div>
 """, unsafe_allow_html=True)
-  
+
+# When the form is submitted:
+if submitted:
+
+    # 1. Build patient DataFrame from form inputs
+    patient = pd.DataFrame([{
+        'age'       : age,
+        'gender'    : gender_map.get(gender, 0),
+        'fever'     : int(fever),
+        'cough'     : int(cough),
+        'headache' : int(headache),
+        'chest_pain' : int(chest_pain),
+        'stomach_pain' : int(stomach_pain),
+        'shortness_breath' : int(shortness_breath),
+        'nausea_vomitting' : int(nausea_vomitting),
+        'dizziness' : int(dizziness),
+        'skin_rash' : int(skin_rash),
+        'temperature_level' :temp_map.get(temperature_level,1),
+        'heart_rate_level':hr_map.get(heart_rate_level,1),
+        'duration' :dur_map.get(duration,1),
+        'asthma' : int(asthma),
+        'hypertension' : int(hypertension),
+        'heart_disease' : int(heart_disease),
+        'chieft_complaint': cc_map.get(chief_complaint,9)
+  }])
+
+    # 2. Scale numerical features (same scaler as training)
+    patient_scaled = patient.copy()
+    patient_scaled[cols_to_scale] = scaler.transform(patient[cols_to_scale])
+
+    # 3. Make prediction
+    pred       = model.predict(patient_scaled[features])[0]
+    proba      = model.predict_proba(patient_scaled[features])[0]
+    dept_name  = dept_map_inv[pred]
+    confidence = proba[pred] * 100
+    info       = DEPT_INFO[dept_name] 
+
+st.markdown(f"""
+    <div style="background:{info['bg']};border:1.5px solid {info['border']};
+                border-radius:16px;padding:28px 32px;">
+        <div style="font-size:44px">{info['icon']}</div>
+        <div>{dept_name}</div>
+        <div>Confidence: {confidence:.1f}%</div>
+    </div>
+""", unsafe_allow_html=True)
+
+
+
