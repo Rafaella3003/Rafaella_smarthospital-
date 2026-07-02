@@ -147,7 +147,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 #Section 2 - Duration and Complaint 
 
   st.markdown("""
-<div style="background:#fdf4ff;border:1px solid #bae6fd; border-radius:14px;
+<div style="background:#fdf4ff;border:1px solid #bae6fd; border-radius:14px; padding:16px;">
             padding:20px 24px; margin-bottom:20px;">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
         <span style ="background:#7c3aed;color:white;border-radius:8px;
