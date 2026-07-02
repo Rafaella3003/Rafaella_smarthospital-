@@ -274,6 +274,12 @@ if submitted:
     patient_scaled = patient.copy()
     patient_scaled[cols_to_scale] = scaler.transform(patient[cols_to_scale])
 
+    st.write("Model features:", features)
+    st.write("Patient columns:", patient_scaled.columns.tolist())
+
+    missing = [f for f in features if f not in patient_scaled.columns]
+    st.write("Missing:", missing)
+
     pred = model.predict(patient_scaled[features])[0]
     proba = model.predict_proba(patient_scaled[features])[0]
     dept_name = dept_map_inv[pred]
