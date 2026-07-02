@@ -165,7 +165,7 @@ with st.form("triage_form"):
         stomach_pain = st.checkbox("Stomach Pain")
         shortness_breath = st.checkbox("Shortness of Breath")
     with c3:
-        nausea_vomitting = st.checkbox("Nausea/Vomitting")
+        nausea_vomiting = st.checkbox("Nausea/Vomiting")
         dizziness = st.checkbox("Dizziness")
         skin_rash = st.checkbox("Skin Rash")
 
@@ -258,7 +258,7 @@ if submitted:
             "chest_pain": int(chest_pain),
             "stomach_pain": int(stomach_pain),
             "shortness_breath": int(shortness_breath),
-            "nausea_vomitting": int(nausea_vomitting),
+            "nausea_vomiting": int(nausea_vomiting),
             "dizziness": int(dizziness),
             "skin_rash": int(skin_rash),
             "temperature_level": temp_map.get(temperature_level, 1),
