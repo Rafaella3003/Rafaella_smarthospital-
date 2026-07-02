@@ -258,7 +258,7 @@ if submitted:
             "chest_pain": int(chest_pain),
             "stomach_pain": int(stomach_pain),
             "shortness_breath": int(shortness_breath),
-            "nausea_vomitting": int(nausea_vomitting),
+            "nausea_vomiting": int(nausea_vomiting),
             "dizziness": int(dizziness),
             "skin_rash": int(skin_rash),
             "temperature_level": temp_map.get(temperature_level, 1),
@@ -273,12 +273,6 @@ if submitted:
 
     patient_scaled = patient.copy()
     patient_scaled[cols_to_scale] = scaler.transform(patient[cols_to_scale])
-
-    st.write("Model features:", features)
-    st.write("Patient columns:", patient_scaled.columns.tolist())
-
-    missing = [f for f in features if f not in patient_scaled.columns]
-    st.write("Missing:", missing)
 
     pred = model.predict(patient_scaled[features])[0]
     proba = model.predict_proba(patient_scaled[features])[0]
