@@ -277,11 +277,8 @@ if submitted:
  # Debug
     missing = [f for f in features if f not in patient_scaled.columns]
 
-    st.write("Missing Features:", missing)
-    st.write("Model Features:", features)
-    st.write("Patient Columns:", patient_scaled.columns.tolist())
-
     if missing:
+    st.write("Missing Features:", missing)
     st.stop()
 
     pred = model.predict(patient_scaled[features])[0]
