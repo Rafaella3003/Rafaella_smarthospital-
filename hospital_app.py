@@ -117,7 +117,7 @@ with st.form("triage_form"):
 
   #Section 1 - Symptoms
 
-st.markdown("
+st.markdown("""
 <div style="background:#f0f9ff;border:1px solid #bae6fd; border-radius:14px;
             padding:20px 24px; margin-bottom:20px;">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
