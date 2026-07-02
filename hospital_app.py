@@ -18,7 +18,7 @@ st.markdown("""
 
 @st.cache_resource
 def load_model():
-    with open('hospital_model.pkl', 'rb') as f:
+    with open('hospital_model.pkl(1)', 'rb') as f:
         return pickle.load(f)
 
 bundle   = load_model()
@@ -124,6 +124,8 @@ st.markdown(f"""
         <div>Confidence: {confidence:.1f}%</div>
     </div>
 """, unsafe_allow_html=True)
+
+
 
 
 
